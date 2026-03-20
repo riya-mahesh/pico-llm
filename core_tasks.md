@@ -39,7 +39,7 @@
 TinyStories training sanity (train/test loss over epochs):
 
 **Train loss per step + test loss per epoch**
-![TinyStories sanity plot](pico-llm/trained_outputs/outputs_embedding_tiny/loss_means_epoch_ltsm.png)
+![TinyStories sanity plot](pico-llm-code/trained_outputs/outputs_embedding_tiny/loss_means_epoch_ltsm.png)
 
 3seqs.txt training sanity (train/test loss over epochs):
 
