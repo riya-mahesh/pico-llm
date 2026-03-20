@@ -44,7 +44,7 @@ TinyStories training sanity (train/test loss over epochs):
 3seqs.txt training sanity (train/test loss over epochs):
 
 **Train loss per step + test loss per epoch**
-![3seqs sanity plot](pico-llm/trained_outputs/outputs_embedding/loss_means_epoch_lstm.png)
+![3seqs sanity plot](pico-llm-code/trained_outputs/outputs_embedding/loss_means_epoch_lstm.png)
 
 
 
@@ -76,13 +76,13 @@ Both train and test loss decrease over epochs (see the plot above), which confir
 **(a) K-gram MLP on 3seq with one-hot inputs**
 
 **Train loss per step + test loss per epoch**
-![One-hot 3seq sanity plot](pico-llm/trained_outputs/outputs_onehot/loss_means_epoch_kgram.png)
+![One-hot 3seq sanity plot](pico-llm-code/trained_outputs/outputs_onehot/loss_means_epoch_kgram.png)
 
 
 **(b) K-gram MLP on 3seq with `nn.Embedding`**
 
 **Train loss per step + test loss per epoch**
-![Embedding 3seq sanity plot](pico-llm/trained_outputs/outputs_embedding/loss_means_epoch_kgram.png)
+![Embedding 3seq sanity plot](pico-llm-code/trained_outputs/outputs_embedding/loss_means_epoch_kgram.png)
 
 
 
@@ -116,7 +116,7 @@ In the embedding version, the loss drops quickly and the train/test curves behav
 - test_fraction : 0.1
 
 **Train loss per step + test loss per epoch**
-![Embedding 3seq sanity plot](pico-llm/trained_outputs/outputs_3seqs_fullpattern/loss_means_epoch_kgram.png)
+![Embedding 3seq sanity plot](pico-llm-code/trained_outputs/outputs_3seqs_fullpattern/loss_means_epoch_kgram.png)
 
 
 ## 3. **Question 3.** Nucleus (top-p) sampling
@@ -207,7 +207,7 @@ As the `top-p` value increases, the generated text becomes more diverse and crea
 
 Transformer on 3seq sanity plot (train/test loss):
 
-![KV Cache sanity plot](pico-llm/trained_outputs/outputs_3seqs_fullpattern/loss_means_epoch_kv.png)
+![KV Cache sanity plot](pico-llm-code/trained_outputs/outputs_3seqs_fullpattern/loss_means_epoch_kv.png)
 
 ### 3seq.txt – Perfect Fit with Low Generalization Risk
 For the 3seq.txt dataset, both training and test loss drop sharply within the first few hundred steps and plateau close to zero.
@@ -230,7 +230,7 @@ For the 3seq.txt dataset, both training and test loss drop sharply within the fi
 
 Transformer on tinystories sanity plot (train/test loss):
 
-![TinyStories sanity plot](pico-llm/trained_outputs/outputs_tinystories_full/loss_means_epoch_kv.png)
+![TinyStories sanity plot](pico-llm-code/trained_outputs/outputs_tinystories_full/loss_means_epoch_kv.png)
 
 ### Tinystories – overfitting
 In the TinyStories training curve, we observe that while the training loss steadily decreases over the epochs, the test loss flattens early and begins to slightly increase in the later epochs.
@@ -255,7 +255,7 @@ We used a custom subset of 30,000 lines from the hugging face Wikipedia corpus d
 - max_steps_per_epoch : 1500
 - use_position_emb
 
-![TinyStories sanity plot](pico-llm/trained_outputs/outputs_wiki_512/loss_means_epoch_kv.png)
+![TinyStories sanity plot](pico-llm-code/trained_outputs/outputs_wiki_512/loss_means_epoch_kv.png)
 
 Overfit so decreasing epochs according to the image to around 3-4, 4500 global steps.(where the test loss is min)
 
@@ -273,7 +273,7 @@ Overfit so decreasing epochs according to the image to around 3-4, 4500 global s
 - max_steps_per_epoch : 1500
 - use_position_emb
 
-![TinyStories sanity plot](pico-llm/trained_outputs/outputs_wiki_1024/loss_means_epoch_kv.png)
+![TinyStories sanity plot](pico-llm-code/trained_outputs/outputs_wiki_1024/loss_means_epoch_kv.png)
 
 
 # Q2. Overfitting vs Underfitting
@@ -294,7 +294,7 @@ Overfit so decreasing epochs according to the image to around 3-4, 4500 global s
 ### For Underfitting -
 
 
-![TinyStories sanity plot](pico-llm/trained_outputs/outputs_tiny_underfit/loss_means_epoch_kv.png)
+![TinyStories sanity plot](pico-llm-code/trained_outputs/outputs_tiny_underfit/loss_means_epoch_kv.png)
 
 #### Configuration:
 epochs = 3 | max_steps_per_epoch = 100
@@ -310,7 +310,7 @@ epochs = 3 | max_steps_per_epoch = 100
 
 ### For Overfitting -
 
-![TinyStories sanity plot](pico-llm/trained_outputs/outputs_tiny_overfit/loss_means_epoch_kv.png)
+![TinyStories sanity plot](pico-llm-code/trained_outputs/outputs_tiny_overfit/loss_means_epoch_kv.png)
 
 #### Configuration:
 epochs = 15 | max_steps_per_epoch = 2500
@@ -360,7 +360,7 @@ Generated text: Once upon a time, there were two friends, Bobby and Milly. Bobby
 
 Taking the 2 configurations of the custom wiki dataset where one has 512 embed size and one has 1024 embed size - 
 
-![Wiki hyperparams](pico-llm/trained_outputs/hyperparams/compare_embed_loss.png)
+![Wiki hyperparams](pico-llm-code/trained_outputs/hyperparams/compare_embed_loss.png)
 
 The model with **embedding size 1024** converges noticeably faster, showing a steeper decline in loss across the first three epochs. This happens because larger embeddings offer greater expressive power and smoother optimization dynamics, enabling the model to capture token relationships more effectively early in training. In contrast, the **512-dimensional** model learns more slowly and plateaus higher, reflecting its lower representational capacity.
 
@@ -369,7 +369,7 @@ The model with **embedding size 1024** converges noticeably faster, showing a st
 
 We have 16 heads and 8 blocks with 512-dimensional embeddings but have 30k datalines in tiny stories and wiki.
 
-![Wiki hyperparams](pico-llm/trained_outputs/hyperparams/overfitting_tiny_vs_wiki_16H8B.png)
+![Wiki hyperparams](pico-llm-code/trained_outputs/hyperparams/overfitting_tiny_vs_wiki_16H8B.png)
 
 The model’s capacity far exceeds the size of both datasets, leading to overfitting in different ways. TinyStories overfits quickly as the model memorizes short, repetitive stories, while Wiki’s higher and dense diverse data exposes capacity limits — the model continues reducing training loss even as test loss rises steadily, reflecting poor generalization.
 
@@ -388,7 +388,7 @@ The model’s capacity far exceeds the size of both datasets, leading to overfit
 - use_post_norm
 - use_position_emb (enable/disable)
 
-![Positional_embedding](pico-llm/trained_outputs/outputs_no_positional_emd_postnorm_tinystories/Figure_1.png)
+![Positional_embedding](pico-llm-code/trained_outputs/outputs_no_positional_emd_postnorm_tinystories/Figure_1.png)
 
 Both models with and without positional embedding perform similar when the test and train losses are accounted. However, qualitative analysis of the model without positional embedding shows that the output consists of many repetitive words. This is because the causal mask only preserves the temporal order direction and does not capture the positions of the tokens, so the model behave equivalent to a bag of words distribution.
 
@@ -437,16 +437,16 @@ To understand the internal mechanisms of the trained Transformer, we analyzed th
 ### Attention Map Visualization: Layer 3, Head 0, Head 1, Head 2, Head 3
 
 #### **Figure 1**: Attention Heatmap for Layer 3, Head 0
-![Attention Heatmap for Layer 3, Head 0](pico-llm/trained_outputs/plots_interpretability/Figure_1.png)
+![Attention Heatmap for Layer 3, Head 0](pico-llm-code/trained_outputs/plots_interpretability/Figure_1.png)
 
 #### **Figure 2**: Attention Heatmap for Layer 3, Head 1
-![Attention Heatmap for Layer 3, Head 1](pico-llm/trained_outputs/plots_interpretability/Figure_2.png)
+![Attention Heatmap for Layer 3, Head 1](pico-llm-code/trained_outputs/plots_interpretability/Figure_2.png)
 
 #### **Figure 3**: Attention Heatmap for Layer 3, Head 2
-![Attention Heatmap for Layer 3, Head 2](pico-llm/trained_outputs/plots_interpretability/Figure_3.png)
+![Attention Heatmap for Layer 3, Head 2](pico-llm-code/trained_outputs/plots_interpretability/Figure_3.png)
 
 #### **Figure 4**: Attention Heatmap for Layer 3, Head 3
-![Attention Heatmap for Layer 3, Head 3](pico-llm/trained_outputs/plots_interpretability/Figure_4.png)
+![Attention Heatmap for Layer 3, Head 3](pico-llm-code/trained_outputs/plots_interpretability/Figure_4.png)
 
 The plots show the attention weight ($W_{q,k}$) assigned by a query token at position $q$ (Y-axis) to a key token at position $k$ (X-axis). Darker colors indicate low weight, while yellow/green indicates high weight (up to 1.0).
 
@@ -556,6 +556,6 @@ Head 3 focuses on understanding **subject-object relationships** and how the mod
 - use_position_emb
 - use_post_norm
 
-![TinyStories Pre post norm plots](pico-llm/trained_outputs/outputs_postnorm_tinystories/Pre_post_norm_plots.png)
+![TinyStories Pre post norm plots](pico-llm-code/trained_outputs/outputs_postnorm_tinystories/Pre_post_norm_plots.png)
 
 We observe that across all epochs, both training and test losses for the post-norm variant are lower than those of the pre-norm model. Post-norm places layer normalization after the residual addition, which stabilizes gradient flow by preventing the residual branch from dominating early in training. This reduces gradient variance, improves conditioning of the Transformer blocks, and leads to smoother optimization in small sized datasets like Tiny Stories.
